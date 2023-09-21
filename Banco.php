@@ -1,8 +1,8 @@
 <?php 
     //dados da conexão com o Banco.
-    $endereco = 'localhost';
-    $banco = 'teste01';
-    $usuario = 'postgres';
+    $endereco = 'localhost'; //endereço do Banco.
+    $banco = 'teste01'; //Nome do Banco.
+    $usuario = 'postgres'; //Usuário.
     $senha = ''; //Adiciona aqui sua senha.
 
 try {
