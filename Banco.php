@@ -3,7 +3,7 @@
     $endereco = 'localhost';
     $banco = 'teste01';
     $usuario = 'postgres';
-    $senha = 'oojr9906';
+    $senha = ''; //Adiciona aqui sua senha.
 
 try {
 
