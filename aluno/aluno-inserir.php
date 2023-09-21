@@ -27,8 +27,8 @@
     <div class="conteiner" id="tamanhoConteiner" style="margin-top: 40px;">
         <h4>Formulário de Cadastro</h4>
 
-        <form action="#" method="post" style="margin-top: 20px;">
-            <input type="text" class="form-control" name="id" id="modelo" autocomplete="off" style="display: none;">
+        <form action="./aluno_insert.php" method="POST" style="margin-top: 20px;">
+            <!-- <input type="text" class="form-control" name="id" id="modelo" autocomplete="off" style="display: none;"> -->
 
             <div class="form-group">
                 <label>Nome</label>
@@ -36,7 +36,7 @@
             </div>
             <div class="form-group">
                 <label>Data de Nascimento</label>
-                <input type="date" class="form-control" id="dataNas" autocomplete="off" name="dataNasc" value="Digite a data">
+                <input type="date" class="form-control" id="dataNas" autocomplete="off" name="data_nascimento" value="1981-01-01">
             </div>
             <div class="form-group">
                 <label>CPF</label>
@@ -44,18 +44,18 @@
             </div>
             <div class="form-group">
                 <label>Telefone</label>
-                <input type="number" class="form-control" id="fone" autocomplete="off" name="fone" value="Digite o telefone !">
+                <input type="number" class="form-control" id="fone" autocomplete="off" name="telefone" value="Digite o telefone !">
             </div>
             <div class="form-group">
                 <label>Whatsapp</label>
-                <input type="number" class="form-control" id="whats" autocomplete="off" name="whats" value="Degite o whats !">            
+                <input type="number" class="form-control" id="whats" autocomplete="off" name="whatsapp" value="Degite o whats !">            
             <div class="form-group">
                 <label>Curso que deseja matricular</label>
-                <input type="text" class="form-control" id="curso" autocomplete="off" name="curso" value="Degite o nome do cuso !">
+                <input type="text" class="form-control" id="curso" autocomplete="off" name="curso_desejado" value="Digite o nome do cuso !">
             </div>
             
             <div style="text-align: right;">
-                <a href="./aluno_update.php" type="submit" id="botao" class="btn btn-primary botao">Cadastrar</a>
+                <button type="submit" name="enviardados" id="botao" class="btn btn-primary botao">Cadastrar</button>
             </div>
         </form>
     </div>

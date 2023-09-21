@@ -1,5 +1,12 @@
 <?php 
- // conexão
+  include '../Banco.php';
+
+  $id = $_GET['id'];
+
+  $sql = $pdo->prepare("DELETE FROM alunos WHERE id=?");
+    
+    $sql->execute(array($id));
+        
 ?>
 <!DOCTYPE html>
 <html lang="pt-Br">
@@ -11,7 +18,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <style>
         #tamanhoConteiner{
-            width: 500px;
+            width: 600px;
         }
         #botão{
             background-color: #fec68d;
@@ -21,9 +28,10 @@
 </head>
 <body>
     <div class="conteiner" style="width: 500px;margin-top: 20px;">
-        <h4>Aluno Excluído com sucesso</h4>
+        <h4>Aluno excluido !</h4> 
     </div>
-    <a href="./aluno_list.php" role="button" class="btn btn-primary btn-sm">Listagem de Alunos</a>
+    <a href="../index.php" role="button" class="btn btn-primary btn-sm"><i class="fa-solid fa-house"></i> Home</a>
     
+    <script src="https://kit.fontawesome.com/255d7ddd94.js" crossorigin="anonymous"></script>
 </body>
 </html>

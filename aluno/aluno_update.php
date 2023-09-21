@@ -1,3 +1,34 @@
+<?php 
+    include '../Banco.php';
+
+    $id=$_POST['id'];
+
+    // var_dump($id);
+    $nome=$_POST['nome'];
+    $data_nascimento=$_POST['data_nascimento'];
+    $cpf=$_POST['cpf'];
+    $telefone=$_POST['telefone'];
+    $whatsapp=$_POST['whatsapp'];
+    $curso_desejado=$_POST['curso_desejado'];
+    
+    $sql = "UPDATE alunos SET  nome=:nome, data_nascimento=:data_nascimento,cpf=:cpf,telefone=:telefone,whatsapp=:whatsapp,curso_desejado=:curso_desejado WHERE id=:id";
+
+    $stmt = $pdo->prepare($sql);
+
+    $dadosatualizados = array(
+        ':id' => (int)$id, 
+        ':nome' => $nome,
+        ':data_nascimento' => $data_nascimento,
+        ':cpf' => $cpf,
+        ':telefone' => $telefone,
+        ':whatsapp' => $whatsapp,
+        ':curso_desejado' => $curso_desejado
+    );
+
+    $stmt->execute($dadosatualizados);
+
+    ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

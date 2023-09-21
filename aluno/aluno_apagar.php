@@ -44,8 +44,8 @@
                             echo'<td>'.$value['telefone'].'</td>';
                             echo'<td>'.$value['whatsapp'].'</td>';
                             echo'<td>'.$value['curso_desejado'].'</td>';
-                            echo '<td> 
-                                    <a class="btn btn-warning btn-sm" href="./aluno_edit.php?id='.$value['id'].'" role="button"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
+                            echo '<td>
+                                    <a class="btn btn-danger btn-sm" href="./aluno_delete.php?id='.$value['id'].'" role="button"> Excluir</a>
                                 </td>';
                             echo'</tr>';
                         }
@@ -57,10 +57,8 @@
         </table>
 
         <div style="text-align: right">
-        <a href="../index.php" role="button" class="btn btn-sm btn-primary"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="../index.php" role="button" class="btn btn-sm btn-primary">Home</a>
       </div>
     </div><!-- final conteiner -->
-
-    <script src="https://kit.fontawesome.com/255d7ddd94.js" crossorigin="anonymous"></script>
 </body>
 </html>

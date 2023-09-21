@@ -1,3 +1,9 @@
+<?php 
+    include '../Banco.php';
+
+    $id = $_GET['id'];
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -26,36 +32,58 @@
 <body>
     <div class="conteiner" id="tamanhoConteiner" style="margin-top: 40px;">
         <h4>Formulário de edição</h4>
+        <?php 
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE id=$id");
 
-        <form action="#" method="post" style="margin-top: 20px;">
-            <input type="text" class="form-control" name="id" id="modelo" autocomplete="off" style="display: none;">
+            $sql->execute();
+
+            $info = $sql->fetchAll();
+
+            foreach ($info as $key => $value) {
+                $id = $value['id'];
+                $nome = $value['nome'];
+                $data_nascimento = $value['data_nascimento'];
+                $cpf = $value['cpf'];
+                $telefone = $value['telefone'];
+                $whatsapp = $value['whatsapp'];
+                $curso_desejado = $value['curso_desejado'];
+            };
+        ?>
+
+
+
+
+        <form action="./aluno_update.php" method="post" style="margin-top: 20px;">
+
+            <!-- pegando o id -->
+            <input type="text" class="form-control" name="id" id="modelo" autocomplete="off" value="<?php echo $id?>" style="display: none;"> 
 
             <div class="form-group">
                 <label>Nome</label>
-                <input type="text" class="form-control" id="nome" autocomplete="off" name="nome" value="Digite o nome !">
+                <input type="text" class="form-control" id="nome" autocomplete="off" name="nome" value="<?php echo $nome?>">
             </div>
             <div class="form-group">
                 <label>Data de Nascimento</label>
-                <input type="date" class="form-control" id="dataNas" autocomplete="off" name="dataNasc" value="Digite a data">
+                <input type="date" class="form-control" id="dataNas" autocomplete="off" name="data_nascimento" value="<?php echo $data_nascimento ?>">
             </div>
             <div class="form-group">
                 <label>CPF</label>
-                <input type="number" class="form-control" id="cpf" autocomplete="off" name="cpf" value="Digite o CPF !">
+                <input type="number" class="form-control" id="cpf" autocomplete="off" name="cpf" value="<?php echo $cpf ?>">
             </div>
             <div class="form-group">
                 <label>Telefone</label>
-                <input type="number" class="form-control" id="fone" autocomplete="off" name="fone" value="Digite o telefone !">
+                <input type="number" class="form-control" id="fone" autocomplete="off" name="telefone" value="<?php echo $telefone ?>">
             </div>
             <div class="form-group">
                 <label>Whatsapp</label>
-                <input type="number" class="form-control" id="whats" autocomplete="off" name="whats" value="Degite o whats !">            
+                <input type="number" class="form-control" id="whats" autocomplete="off" name="whatsapp" value="<?php echo $whatsapp ?>">            
             <div class="form-group">
                 <label>Curso que deseja matricular</label>
-                <input type="text" class="form-control" id="curso" autocomplete="off" name="curso" value="Degite o nome do cuso !">
+                <input type="text" class="form-control" id="curso" autocomplete="off" name="curso_desejado" value="<?php echo $curso_desejado ?>">
             </div>
             
             <div style="text-align: right;">
-                <a href="./aluno_update.php" type="submit" id="botao" class="btn btn-primary botao">Atualizar</a>
+                <button type="submit" id="botao" class="btn btn-primary botao">Atualizar</button>
             </div>
         </form>
     </div>
