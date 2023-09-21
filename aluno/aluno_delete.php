@@ -1,9 +1,9 @@
 <?php 
   include '../Banco.php';
 
-  $id = $_GET['id'];
+  $id = $_GET['id']; //pegando os id do aluno passado via get.
 
-  $sql = $pdo->prepare("DELETE FROM alunos WHERE id=?");
+  $sql = $pdo->prepare("DELETE FROM alunos WHERE id=?"); //comando para deletar o aluno pelo id passado.
     
     $sql->execute(array($id));
         

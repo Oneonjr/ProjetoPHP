@@ -28,7 +28,6 @@
         <h4>Formulário de Cadastro</h4>
 
         <form action="./aluno_insert.php" method="POST" style="margin-top: 20px;">
-            <!-- <input type="text" class="form-control" name="id" id="modelo" autocomplete="off" style="display: none;"> -->
 
             <div class="form-group">
                 <label>Nome</label>
@@ -40,15 +39,15 @@
             </div>
             <div class="form-group">
                 <label>CPF</label>
-                <input type="number" class="form-control" id="cpf" autocomplete="off" name="cpf" value="Digite o CPF !">
+                <input type="number" class="form-control" id="cpf" autocomplete="off" name="cpf">
             </div>
             <div class="form-group">
                 <label>Telefone</label>
-                <input type="number" class="form-control" id="fone" autocomplete="off" name="telefone" value="Digite o telefone !">
+                <input type="number" class="form-control" id="fone" autocomplete="off" name="telefone" >
             </div>
             <div class="form-group">
                 <label>Whatsapp</label>
-                <input type="number" class="form-control" id="whats" autocomplete="off" name="whatsapp" value="Degite o whats !">            
+                <input type="number" class="form-control" id="whats" autocomplete="off" name="whatsapp">            
             <div class="form-group">
                 <label>Curso que deseja matricular</label>
                 <input type="text" class="form-control" id="curso" autocomplete="off" name="curso_desejado" value="Digite o nome do cuso !">

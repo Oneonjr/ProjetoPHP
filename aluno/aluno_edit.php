@@ -1,7 +1,7 @@
 <?php 
     include '../Banco.php';
 
-    $id = $_GET['id'];
+    $id = $_GET['id']; //pegando o id passo via Get.
 ?>
 
 <!DOCTYPE html>
@@ -33,12 +33,15 @@
     <div class="conteiner" id="tamanhoConteiner" style="margin-top: 40px;">
         <h4>Formulário de edição</h4>
         <?php 
+
+            //selecionando o usuario pelo id passado via GET.
             $sql = $pdo->prepare("SELECT * FROM alunos WHERE id=$id");
 
             $sql->execute();
 
             $info = $sql->fetchAll();
 
+            //atribuindo os valores das tabelas as variaveis.
             foreach ($info as $key => $value) {
                 $id = $value['id'];
                 $nome = $value['nome'];
@@ -55,7 +58,7 @@
 
         <form action="./aluno_update.php" method="post" style="margin-top: 20px;">
 
-            <!-- pegando o id -->
+            <!-- pegando o id  para fazer a alteração no BD-->
             <input type="text" class="form-control" name="id" id="modelo" autocomplete="off" value="<?php echo $id?>" style="display: none;"> 
 
             <div class="form-group">

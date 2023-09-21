@@ -1,9 +1,12 @@
 <?php 
     include '../Banco.php';
 
-    $id=$_POST['id'];
+    $id=$_POST['id']; // id passado pelo formulário via post.
 
-    // var_dump($id);
+    // var_dump($id); 
+
+
+    //atribuindo os vlores passados pelo formulário para as variaveis.
     $nome=$_POST['nome'];
     $data_nascimento=$_POST['data_nascimento'];
     $cpf=$_POST['cpf'];
@@ -11,10 +14,13 @@
     $whatsapp=$_POST['whatsapp'];
     $curso_desejado=$_POST['curso_desejado'];
     
+
+    //comando para atualizar.
     $sql = "UPDATE alunos SET  nome=:nome, data_nascimento=:data_nascimento,cpf=:cpf,telefone=:telefone,whatsapp=:whatsapp,curso_desejado=:curso_desejado WHERE id=:id";
 
     $stmt = $pdo->prepare($sql);
 
+    //atribuindo os novos dos para os campos para atualizar.
     $dadosatualizados = array(
         ':id' => (int)$id, 
         ':nome' => $nome,

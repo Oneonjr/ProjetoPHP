@@ -29,12 +29,14 @@
                     <?php 
                         include '../Banco.php';
 
+                        //selecionando os dados da tabela aluno.
                         $sql = $pdo->prepare("SELECT * FROM alunos");
 
                         $sql->execute();
 
                         $info = $sql->fetchAll();
 
+                        //exibindo cada aluno cadastrado.
                         foreach ($info as $key => $value) {
                             echo'<tr>';
                             echo'<td>'.$value['id'].'</td>';
@@ -46,7 +48,7 @@
                             echo'<td>'.$value['curso_desejado'].'</td>';
                             echo '<td> 
                                     <a class="btn btn-warning btn-sm" href="./aluno_edit.php?id='.$value['id'].'" role="button"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
-                                </td>';
+                                </td>'; //passando id via get.
                             echo'</tr>';
                         }
                     ?>

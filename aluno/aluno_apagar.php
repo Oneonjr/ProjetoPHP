@@ -29,6 +29,7 @@
                     <?php 
                         include '../Banco.php';
 
+                        //selecionando os aluno da tabela.
                         $sql = $pdo->prepare("SELECT * FROM alunos");
 
                         $sql->execute();
@@ -45,8 +46,8 @@
                             echo'<td>'.$value['whatsapp'].'</td>';
                             echo'<td>'.$value['curso_desejado'].'</td>';
                             echo '<td>
-                                    <a class="btn btn-danger btn-sm" href="./aluno_delete.php?id='.$value['id'].'" role="button"> Excluir</a>
-                                </td>';
+                                    <a class="btn btn-danger btn-sm" href="./aluno_delete.php?id='.$value['id'].'" role="button"> Excluir</a> 
+                                </td>'; //passando id via get.
                             echo'</tr>';
                         }
                     ?>

@@ -1,6 +1,5 @@
 <?php 
     require "../Banco.php";
-    date_default_timezone_set('America/Sao_Paulo');
 ?>
 
 <!DOCTYPE html>
@@ -51,9 +50,8 @@
                             header("Location: ../index.php?msgSucesso=Cadastro realizado com sucesso!");
                         }
                     } catch (PDOException $e) {
-                        //caso dê erro entra no catch
-
-                        // die($e->getMessage());
+                        //caso dê erro entra no catch e retorna para o Index.
+                        
                         header("Location: ../index.php?msgErro=Falha ao cadastrar");
                     }
                 }else{
