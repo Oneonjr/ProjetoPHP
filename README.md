@@ -9,6 +9,8 @@ O desafio deste projeto seria construir um sistema simples para o cadastro de al
 
 Conseguir criar um CRUD onde é possível fazer tudo que foi pedido.
 
+Link do Vídeo de Demonstração: https://youtu.be/opz2SyWxD_U
+
 # Como testar na sua maquina.
 1º precisa ter o XAMPP, PostgreSQL e uma IDE de sua preferência instalado e funcionando corretamente na sua máquina.
 
