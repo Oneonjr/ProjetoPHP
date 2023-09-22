@@ -9,6 +9,18 @@ O desafio deste projeto seria construir um sistema simples para o cadastro de al
 
 Conseguir criar um CRUD onde é possível fazer tudo que foi pedido.
 
+✔️ Criação do Banco (script) e modelo DER.
+
+✔️ Criação do Projeto.
+
+✔️ Inclusão de aluno.
+
+✔️ Lista de alunos.
+
+✔️ Excluir alunos.
+
+✔️ Versionamento.
+
 Link do Vídeo de Demonstração: https://youtu.be/opz2SyWxD_U
 
 # Como testar na sua maquina.
@@ -16,7 +28,7 @@ Link do Vídeo de Demonstração: https://youtu.be/opz2SyWxD_U
 
 2º precisa criar um servidor local e acessar a pasta do projeto (vai inicar com o Index.html).
 
-3º executar o script do banco de dados para criar as tabelas.
+3º executar o "scriptBanco" no SGBD para criar o banco e as tabelas, caso queira pode importar o "scriptPgAdmin" no pgAdmin para importar automaticamente.
 
 4º Verificar se as variáveis de conexão com o Banco de dados do Banco.php estão corretas.
 
