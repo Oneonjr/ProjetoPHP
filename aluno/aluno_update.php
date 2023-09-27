@@ -14,24 +14,37 @@
     $whatsapp=$_POST['whatsapp'];
     $idcurso=$_POST['idcurso'];
     
+    // Verificando se o CPF já existe
+    $consultar_cpf = "SELECT COUNT(*) FROM alunos WHERE cpf = :cpf";
+    $stmt = $pdo->prepare($consultar_cpf);
+    $stmt->bindParam(':cpf', $cpf, PDO::PARAM_INT);
+    $stmt->execute();
 
-    //comando para atualizar.
-    $sql = "UPDATE alunos SET  nome=:nome, data_nascimento=:data_nascimento,cpf=:cpf,telefone=:telefone,whatsapp=:whatsapp,idcurso=:idcurso WHERE id=:id";
+    $conferindo = $stmt->fetchColumn();
 
-    $stmt = $pdo->prepare($sql);
+    if ($conferindo > 0) {
+        //Se o CPF já esteja em uso
+        header("Location: ../index.php?msgErro=CPF já cadastrado ");
+    }else {
+        //comando para atualizar.
+        $sql = "UPDATE alunos SET  nome=:nome, data_nascimento=:data_nascimento,cpf=:cpf,telefone=:telefone,whatsapp=:whatsapp,idcurso=:idcurso WHERE id=:id";
 
-    //atribuindo os novos dos para os campos para atualizar.
-    $dadosatualizados = array(
-        ':id' => (int)$id, 
-        ':nome' => $nome,
-        ':data_nascimento' => $data_nascimento,
-        ':cpf' => $cpf,
-        ':telefone' => $telefone,
-        ':whatsapp' => $whatsapp,
-        ':idcurso' => $idcurso
-    );
+        $stmt = $pdo->prepare($sql);
 
-    $stmt->execute($dadosatualizados);
+        //atribuindo os novos dos para os campos para atualizar.
+        $dadosatualizados = array(
+            ':id' => (int)$id, 
+            ':nome' => $nome,
+            ':data_nascimento' => $data_nascimento,
+            ':cpf' => $cpf,
+            ':telefone' => $telefone,
+            ':whatsapp' => $whatsapp,
+            ':idcurso' => $idcurso
+        );
+
+        $stmt->execute($dadosatualizados);
+    }
+    
 
     ?>
 

@@ -71,15 +71,15 @@
             </div>
             <div class="form-group">
                 <label>CPF</label>
-                <input type="number" class="form-control" id="cpf" autocomplete="off" name="cpf" value="<?php echo $cpf ?>" required>
+                <input type="text" class="form-control" id="cpf" autocomplete="off" name="cpf" value="<?php echo $cpf ?>" required>
             </div>
             <div class="form-group">
                 <label>Telefone</label>
-                <input type="number" class="form-control" id="fone" autocomplete="off" name="telefone" value="<?php echo $telefone ?>" required>
+                <input type="text" class="form-control" id="telefone" autocomplete="off" name="telefone" value="<?php echo $telefone ?>" required>
             </div>
             <div class="form-group">
                 <label>Whatsapp</label>
-                <input type="number" class="form-control" id="whats" autocomplete="off" name="whatsapp" value="<?php echo $whatsapp ?>" required>            
+                <input type="text" class="form-control" id="whatsapp" autocomplete="off" name="whatsapp" value="<?php echo $whatsapp ?>" required>            
             <!-- <div class="form-group">
                 <label>Curso que deseja matricular</label>
                 <input type="text" class="form-control" id="curso" autocomplete="off" name="curso_desejado" value="">
@@ -111,5 +111,15 @@
             </div>
         </form>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>  <!--adicionando o jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js">//Adicionando a mask</script>
+    <script>
+        //utilizando a mask
+        $('#cpf').mask('000.000.000-00', {reverse: true});
+        $('#telefone').mask('(00) 0 0000-0000');
+        $('#whatsapp').mask('(00) 0 0000-0000');
+
+    </script>
 </body>
 </html>
