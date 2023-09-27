@@ -1,3 +1,7 @@
+<?php 
+    include "../Banco.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -31,32 +35,67 @@
 
             <div class="form-group">
                 <label>Nome</label>
-                <input type="text" class="form-control" id="nome" autocomplete="off" name="nome" value="Digite o nome !">
+                <input type="text" class="form-control" id="nome" autocomplete="off" name="nome" required>
             </div>
             <div class="form-group">
                 <label>Data de Nascimento</label>
-                <input type="date" class="form-control" id="dataNas" autocomplete="off" name="data_nascimento" value="1981-01-01">
+                <input type="date" class="form-control" id="data_nascimento" autocomplete="off" name="data_nascimento" value="1981-01-01" required>
             </div>
             <div class="form-group">
                 <label>CPF</label>
-                <input type="number" class="form-control" id="cpf" autocomplete="off" name="cpf">
+                <input type="text" class="form-control" id="cpf" autocomplete="off" name="cpf"
+                required>
             </div>
             <div class="form-group">
                 <label>Telefone</label>
-                <input type="number" class="form-control" id="fone" autocomplete="off" name="telefone" >
+                <input type="text" class="form-control" id="telefone" autocomplete="off" name="telefone" required>
             </div>
             <div class="form-group">
                 <label>Whatsapp</label>
-                <input type="number" class="form-control" id="whats" autocomplete="off" name="whatsapp">            
-            <div class="form-group">
+                <input type="text" class="form-control" id="whatsapp" autocomplete="off" name="whatsapp" required>            
+            <!-- <div class="form-group">
                 <label>Curso que deseja matricular</label>
-                <input type="text" class="form-control" id="curso" autocomplete="off" name="curso_desejado" value="Digite o nome do cuso !">
-            </div>
+                <input type="text" class="form-control" id="curso_desejado" autocomplete="off" name="curso_desejado"  required>
+            </div> -->
+
+            <br>
+
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" required name="idcurso">
+                <option value="">Selecione uma opção</option>
+                <?php 
+                    //selecionando o id e nome do curso da tabela cursos e ordenando.
+                    $sql = $pdo->prepare("SELECT id,nome_curso FROM cursos ORDER BY nome_curso ASC");
+
+                    $sql->execute();
+
+                    $dadoscurso = $sql->fetchAll();
+
+                    // print_r($dadoscurso);
+
+                    foreach ($dadoscurso as $key => $value) {
+                    //mostrando os valores.    
+                ?>
+                    
+                    <option value="<?php echo $value['id']?>"><?php echo $value['nome_curso'];?></option>
+                <?php 
+                    }
+                ?>
+                
+            </select>
             
             <div style="text-align: right;">
                 <button type="submit" name="enviardados" id="botao" class="btn btn-primary botao">Cadastrar</button>
             </div>
         </form>
     </div>
-</body>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>  <!--adicionando o jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js">//Adicionando a mask</script>
+    <script>
+        //utilizando a mask
+        $('#cpf').mask('000.000.000-00', {reverse: true});
+        $('#telefone').mask('(00) 0 0000-0000');
+        $('#whatsapp').mask('(00) 0 0000-0000');
+
+    </script>
 </html>

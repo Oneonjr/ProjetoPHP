@@ -35,8 +35,8 @@ CREATE TABLE cursos (
 
 
 -- inicio do trigger(gatilho).
-CREATE OR REPLACE FUNCTION adicionar_curso()
-RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION adicionar_curso() --criando função.
+RETURNS TRIGGER AS $$ --inicio do gatilho
 BEGIN
     -- Verifique se o curso já existe na tabela "cursos"
     IF NOT EXISTS (SELECT 1 FROM cursos WHERE nome_curso = NEW.curso_desejado) THEN
@@ -45,9 +45,11 @@ BEGIN
     END IF;
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql; -- fim do gatilho.
 
-CREATE TRIGGER trigger_adicionar_curso
-AFTER INSERT ON alunos
-FOR EACH ROW
-EXECUTE FUNCTION adicionar_curso();
+CREATE TRIGGER trigger_adicionar_curso -- criando o gatilho.
+AFTER INSERT ON alunos -- após inserir dados na tabela aluno
+FOR EACH ROW -- gatilho sendo executato após inserção na tabela aluno.
+EXECUTE FUNCTION adicionar_curso(); --executando a função.
+
+

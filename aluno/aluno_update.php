@@ -12,11 +12,11 @@
     $cpf=$_POST['cpf'];
     $telefone=$_POST['telefone'];
     $whatsapp=$_POST['whatsapp'];
-    $curso_desejado=$_POST['curso_desejado'];
+    $idcurso=$_POST['idcurso'];
     
 
     //comando para atualizar.
-    $sql = "UPDATE alunos SET  nome=:nome, data_nascimento=:data_nascimento,cpf=:cpf,telefone=:telefone,whatsapp=:whatsapp,curso_desejado=:curso_desejado WHERE id=:id";
+    $sql = "UPDATE alunos SET  nome=:nome, data_nascimento=:data_nascimento,cpf=:cpf,telefone=:telefone,whatsapp=:whatsapp,idcurso=:idcurso WHERE id=:id";
 
     $stmt = $pdo->prepare($sql);
 
@@ -28,7 +28,7 @@
         ':cpf' => $cpf,
         ':telefone' => $telefone,
         ':whatsapp' => $whatsapp,
-        ':curso_desejado' => $curso_desejado
+        ':idcurso' => $idcurso
     );
 
     $stmt->execute($dadosatualizados);

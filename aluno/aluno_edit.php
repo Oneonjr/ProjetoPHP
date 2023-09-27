@@ -49,7 +49,7 @@
                 $cpf = $value['cpf'];
                 $telefone = $value['telefone'];
                 $whatsapp = $value['whatsapp'];
-                $curso_desejado = $value['curso_desejado'];
+                // $curso_desejado = $value['curso_desejado'];
             };
         ?>
 
@@ -71,19 +71,40 @@
             </div>
             <div class="form-group">
                 <label>CPF</label>
-                <input type="number" class="form-control" id="cpf" autocomplete="off" name="cpf" value="<?php echo $cpf ?>">
+                <input type="number" class="form-control" id="cpf" autocomplete="off" name="cpf" value="<?php echo $cpf ?>" required>
             </div>
             <div class="form-group">
                 <label>Telefone</label>
-                <input type="number" class="form-control" id="fone" autocomplete="off" name="telefone" value="<?php echo $telefone ?>">
+                <input type="number" class="form-control" id="fone" autocomplete="off" name="telefone" value="<?php echo $telefone ?>" required>
             </div>
             <div class="form-group">
                 <label>Whatsapp</label>
-                <input type="number" class="form-control" id="whats" autocomplete="off" name="whatsapp" value="<?php echo $whatsapp ?>">            
-            <div class="form-group">
+                <input type="number" class="form-control" id="whats" autocomplete="off" name="whatsapp" value="<?php echo $whatsapp ?>" required>            
+            <!-- <div class="form-group">
                 <label>Curso que deseja matricular</label>
-                <input type="text" class="form-control" id="curso" autocomplete="off" name="curso_desejado" value="<?php echo $curso_desejado ?>">
-            </div>
+                <input type="text" class="form-control" id="curso" autocomplete="off" name="curso_desejado" value="">
+            </div> -->
+            <br>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" required name="idcurso">
+                <option value="">Selecione uma opção</option>
+                <?php 
+                    $sql = $pdo->prepare("SELECT id,nome_curso FROM cursos ORDER BY nome_curso ASC");
+
+                    $sql->execute();
+
+                    $dadoscurso = $sql->fetchAll();
+
+                    // print_r($dadoscurso);
+
+                    foreach ($dadoscurso as $key => $value) {
+                ?>
+                    
+                    <option value="<?php echo $value['id']?>"><?php echo $value['nome_curso'];?></option>
+                <?php 
+                    }
+                ?>
+                
+            </select>
             
             <div style="text-align: right;">
                 <button type="submit" id="botao" class="btn btn-primary botao">Atualizar</button>

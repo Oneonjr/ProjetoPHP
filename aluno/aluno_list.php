@@ -30,14 +30,17 @@
                         include '../Banco.php';
 
                         //selecionando os dados da tabela aluno.
-                        $sql = $pdo->prepare("SELECT * FROM alunos");
+                        $sqlalunos = $pdo->prepare("SELECT alunos.*, cursos.nome_curso AS nomecurso
+                        FROM alunos
+                        JOIN cursos ON alunos.idcurso = cursos.id;"); // selecionando dados da tabela alunos e curso e juntando.
 
-                        $sql->execute();
+                        $sqlalunos->execute();
 
-                        $info = $sql->fetchAll();
+                        $infoalunos = $sqlalunos->fetchAll();
 
-                        //exibindo cada aluno cadastrado.
-                        foreach ($info as $key => $value) {
+                        //exibindo cada aluno e seu curso cadastrado.
+                        foreach ($infoalunos as $key => $value) {
+
                             echo'<tr>';
                             echo'<td>'.$value['id'].'</td>';
                             echo'<td>'.$value['nome'].'</td>';
@@ -45,7 +48,7 @@
                             echo'<td>'.$value['cpf'].'</td>';
                             echo'<td>'.$value['telefone'].'</td>';
                             echo'<td>'.$value['whatsapp'].'</td>';
-                            echo'<td>'.$value['curso_desejado'].'</td>';
+                            echo'<td>'.$value['nomecurso'].'</td>';
                             echo '<td> 
                                     <a class="btn btn-warning btn-sm" href="./aluno_edit.php?id='.$value['id'].'" role="button"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
                                 </td>'; //passando id via get.

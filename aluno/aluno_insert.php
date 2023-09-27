@@ -14,7 +14,8 @@
 <body>
         <div class="conteiner" style="width: 500px;margin: top 20px;;"> 
             <h4>Aluno inserido com sucesso.</h4>
-            <?php 
+            <?php
+
                 if (!empty($_POST)) {
                     // Dados chegando pelo metodo Post.
                     $nome= $_POST['nome'] ;
@@ -22,43 +23,64 @@
                     $cpf= $_POST['cpf'] ;
                     $telefone= $_POST['telefone'] ;
                     $whatsapp= $_POST['whatsapp'] ;
-                    $curso_desejado= $_POST['curso_desejado'];
+                    $idcurso = $_POST['idcurso'];
                     $data_cadastro= date('Y-m-d H:i:s') ;
 
-                    try {
-                        //comando para inserir os valores no BD
-                        $sql = "INSERT INTO alunos
-                                    (nome, data_nascimento, cpf, telefone, whatsapp, curso_desejado,data_cadastro)
-                                VALUES
-                                    (:nome, :data_nascimento, :cpf, :telefone, :whatsapp, :curso_desejado, :data_cadastro)";
+                    
+                    // Verificando se o CPF já existe
+                    $consultar_cpf = "SELECT COUNT(*) FROM alunos WHERE cpf = :cpf";
+                    $stmt = $pdo->prepare($consultar_cpf);
+                    $stmt->bindParam(':cpf', $cpf, PDO::PARAM_INT);
+                    $stmt->execute();
 
-                        $stmt = $pdo->prepare($sql); 
-                        
-                        //passando os valores
-                        $dados = array(
-                            ':nome' => $nome,
-                            ':data_nascimento' => $data_nascimento,
-                            ':cpf' => $cpf,
-                            ':telefone' => $telefone,
-                            ':whatsapp' => $whatsapp,
-                            ':curso_desejado' => $curso_desejado,
-                            ':data_cadastro' => $data_cadastro
-                        );
+                    $conferindo = $stmt->fetchColumn();
 
-                        //Caso passe os valores retorna para a pagina inicial.
-                        if ($stmt->execute($dados)) {
-                            header("Location: ../index.php?msgSucesso=Cadastro realizado com sucesso!");
+                    if ($conferindo > 0) {
+                        //Se o CPF já esteja em uso
+                        header("Location: ../index.php?msgErro=CPF já cadastrado no nomde de : $nome");
+                    }else{
+                        //Se não;
+
+                        try {
+                            //comando para inserir os valores no BD
+                            $sql = "INSERT INTO alunos
+                                        (nome, data_nascimento, cpf, telefone, whatsapp,data_cadastro, idcurso)
+                                    VALUES
+                                        (:nome, :data_nascimento, :cpf, :telefone, :whatsapp, :data_cadastro, :idcurso)";
+    
+                            $stmt = $pdo->prepare($sql); 
+                            
+                            //passando os valores
+                            $dados = array(
+                                ':nome' => $nome,
+                                ':data_nascimento' => $data_nascimento,
+                                ':cpf' => $cpf,
+                                ':telefone' => $telefone,
+                                ':whatsapp' => $whatsapp,
+                                ':data_cadastro' => $data_cadastro,
+                                ':idcurso'=> $idcurso
+                            );
+    
+                            //Caso passe os valores retorna para a pagina inicial.
+                            if ($stmt->execute($dados)) {
+                                header("Location: ../index.php?msgSucesso=Cadastro realizado com sucesso!");
+                            }
+                        } catch (PDOException $e) {
+                            //caso dê erro entra no catch e retorna para o Index.
+                            // echo 'Erro ao adicionar <br>';
+                            // die($e->getMessage());
+                            
+                            header("Location: ../index.php?msgErro=Erro ao cadastrar");
                         }
-                    } catch (PDOException $e) {
-                        //caso dê erro entra no catch e retorna para o Index.
-                        
-                        header("Location: ../index.php?msgErro=Falha ao cadastrar");
                     }
+
+                    
                 }else{
 
                     //Caso não adicione retorna pro index.
-                    header("Location: ../index.php?msgErro=Erro de cadastro"); 
+                    header("Location: ../index.php?msgErro=Algum erro no formulário"); 
                 }
+
             ?>
         </div>
         <div>
